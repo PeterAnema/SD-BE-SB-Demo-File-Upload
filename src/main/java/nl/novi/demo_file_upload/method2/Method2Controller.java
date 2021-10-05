@@ -1,15 +1,15 @@
-package nl.novihogeschool.demo_file_upload.method3;
+package nl.novi.demo_file_upload.method2;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/method3/files")
+@RequestMapping("api/method2/files")
 @CrossOrigin
-public class Method3Controller {
+public class Method2Controller {
 
     @GetMapping
-    public ResponseEntity<Object> getFilesInfo() {
+    public ResponseEntity<Object> getFiles() {
         return ResponseEntity.noContent().build();
     }
 

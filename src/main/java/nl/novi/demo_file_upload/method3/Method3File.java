@@ -1,12 +1,9 @@
-package nl.novihogeschool.demo_file_upload.method3;
-
-import lombok.Data;
+package nl.novi.demo_file_upload.method3;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
 @Table(name = "method_3_files")
 public class Method3File {
 

@@ -1,7 +1,7 @@
-package nl.novihogeschool.demo_file_upload.method1;
+package nl.novi.demo_file_upload.method1;
 
-import nl.novihogeschool.demo_file_upload.exceptions.FileStorageException;
-import nl.novihogeschool.demo_file_upload.exceptions.RecordNotFoundException;
+import nl.novi.demo_file_upload.exceptions.FileStorageException;
+import nl.novi.demo_file_upload.exceptions.RecordNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 @Service
-public class Method1ServiceImpl implements Method1Service {
+public class Method1Service {
 
     @Value("${app.upload.dir:${user.home}}")
     private String uploadDirectory;  // relative to root
@@ -31,7 +31,6 @@ public class Method1ServiceImpl implements Method1Service {
     @Autowired
     private Method1Repository repository;
 
-    @Override
     public void init() {
         try {
             Files.createDirectory(uploads);
@@ -40,7 +39,6 @@ public class Method1ServiceImpl implements Method1Service {
         }
     }
 
-    @Override
     public Iterable<Method1File> getFiles() {
         return repository.findAll();
     }
@@ -69,7 +67,6 @@ public class Method1ServiceImpl implements Method1Service {
         return saved.getId();
     }
 
-    @Override
     public void deleteFile(long id) {
         Optional<Method1File> stored = repository.findById(id);
 
@@ -90,7 +87,6 @@ public class Method1ServiceImpl implements Method1Service {
         }
     }
 
-    @Override
     public Method1ResponseDto getFileById(long id) {
         Optional<Method1File> stored = repository.findById(id);
 
@@ -111,12 +107,10 @@ public class Method1ServiceImpl implements Method1Service {
         }
     }
 
-    @Override
     public boolean fileExistsById(long id) {
         return repository.existsById(id);
     }
 
-    @Override
     public Resource downloadFile(long id) {
         Optional<Method1File> stored = repository.findById(id);
 
@@ -126,7 +120,7 @@ public class Method1ServiceImpl implements Method1Service {
 
             Resource resource = null;
             try {
-                resource = new UrlResource(path .toUri());
+                resource = new UrlResource(path.toUri());
                 return resource;
             } catch (MalformedURLException e) {
                 e.printStackTrace();

@@ -1,4 +1,4 @@
-package nl.novihogeschool.demo_file_upload.exceptions;
+package nl.novi.demo_file_upload.exceptions;
 
 import java.io.Serial;
 

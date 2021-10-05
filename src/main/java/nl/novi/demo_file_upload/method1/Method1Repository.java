@@ -1,4 +1,4 @@
-package nl.novihogeschool.demo_file_upload.method1;
+package nl.novi.demo_file_upload.method1;
 
 import org.springframework.data.repository.CrudRepository;
 

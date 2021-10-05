@@ -1,45 +1,45 @@
-package nl.novihogeschool.demo_file_upload.method3;
+package nl.novi.demo_file_upload.method2;
 
-import nl.novihogeschool.demo_file_upload.exceptions.RecordNotFoundException;
-import nl.novihogeschool.demo_file_upload.method1.Method1File;
-import nl.novihogeschool.demo_file_upload.method1.Method1Repository;
+import nl.novi.demo_file_upload.exceptions.RecordNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
 @Service
-public class Method3ServiceImpl implements Method3Service {
+public class Method2Service {
 
     @Autowired
-    private Method1Repository repository;
+    private Method2Repository repository;
 
-    @Override
-    public Iterable<Method1File> getFiles() {
+    public Iterable<Method2File> getFiles() {
         return repository.findAll();
     }
 
-    @Override
     public long uploadFile(MultipartFile file) {
-//        Method3File newFile = repository.save(file);
-//        return newFile.getId();
-        return 0L;
+
+        String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
+
+        Method2File newFileToStore = new Method2File();
+        newFileToStore.setFileName(originalFilename);
+
+        Method2File storedFile = repository.save(newFileToStore);
+
+        return storedFile.getId();
     }
 
-    @Override
     public void deleteFile(long id) {
         if (!repository.existsById(id)) throw new RecordNotFoundException();
         repository.deleteById(id);
     }
 
-    @Override
-    public Optional<Method1File> getFileById(long id) {
+    public Optional<Method2File> getFileById(long id) {
         if (!repository.existsById(id)) throw new RecordNotFoundException();
         return repository.findById(id);
     }
 
-    @Override
     public boolean fileExistsById(long id) {
         return repository.existsById(id);
     }

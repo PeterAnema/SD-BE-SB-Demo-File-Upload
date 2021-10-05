@@ -1,4 +1,4 @@
-package nl.novihogeschool.demo_file_upload.exceptions;
+package nl.novi.demo_file_upload.exceptions;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

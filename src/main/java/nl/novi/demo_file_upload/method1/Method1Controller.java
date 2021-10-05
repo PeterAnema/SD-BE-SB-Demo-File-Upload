@@ -1,4 +1,4 @@
-package nl.novihogeschool.demo_file_upload.method1;
+package nl.novi.demo_file_upload.method1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -44,7 +44,7 @@ public class Method1Controller {
     }
 
     @PostMapping(value = "/files",
-//            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE} )
     public ResponseEntity<Object> uploadFile(Method1RequestDto method1Dto) {
         long newId = methode1Service.uploadFile(method1Dto);
